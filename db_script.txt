@@ -1,0 +1,185 @@
+CREATE TABLE `hospital_mngt`.`person` ( `PersonId` CHAR(10) NOT NULL , `FirstName` VARCHAR(50) NOT NULL , `LastName` VARCHAR(50) NOT NULL , `MiddleName` VARCHAR(50) NOT NULL , `DateOfBirth` DATE NOT NULL , `Address` VARCHAR(100) NOT NULL , `Gender` INT NOT NULL , `Description` VARCHAR(200) NOT NULL , `ContactNo` VARCHAR(12) NOT NULL , PRIMARY KEY (`PersonId`));
+
+CREATE TABLE `hospital_mngt`.`LabIncharge` ( `LabInchargeId` CHAR(10) NOT NULL , `PersonId` CHAR(10) NOT NULL , PRIMARY KEY (`LabInchargeId`));
+
+CREATE TABLE `hospital_mngt`.`Pharmacist` ( `PharmacistId` CHAR(10) NOT NULL , `PersonId` CHAR(10) NOT NULL , PRIMARY KEY (`PharmacistId`));
+
+CREATE TABLE `hospital_mngt`.`Nurse` ( `NurseId` CHAR(10) NOT NULL , `PersonId` CHAR(10) NOT NULL , PRIMARY KEY (`NurseId`));
+
+CREATE TABLE `hospital_mngt`.`Receptionist` ( `ReceptionistId` CHAR(10) NOT NULL , `PersonId` CHAR(10) NOT NULL , PRIMARY KEY (`ReceptionistId`));
+
+CREATE TABLE `hospital_mngt`.`Patient` ( `PatientId` CHAR(10) NOT NULL , `Height` VARCHAR(5) NOT NULL , `Weight` VARCHAR(5) NOT NULL , `BloodGroup` VARCHAR(5) NOT NULL , `PersonId` CHAR(10) NOT NULL , PRIMARY KEY (`PatientId`));
+
+CREATE TABLE `hospital_mngt`.`Doctor` ( `DoctorId` CHAR(10) NOT NULL , `Type` VARCHAR(25) NOT NULL , `Specialization` VARCHAR(25) NOT NULL , `Surgeon` BOOLEAN NOT NULL , `VisitCost` INT(10) NOT NULL , `PersonId` CHAR(10) NOT NULL , PRIMARY KEY (`DoctorId`));
+
+CREATE TABLE `hospital_mngt`.`Surgery` ( `SurgeryId` CHAR(10) NOT NULL , `DoctorId` CHAR(10) NOT NULL , `RoomId` CHAR(10) NOT NULL , `PatientId` CHAR(10) NOT NULL , `DateOfAdmission` DATE NOT NULL , PRIMARY KEY (`SurgeryId`));
+
+CREATE TABLE `hospital_mngt`.`Nurse_in_Surgery` ( `NurseId` CHAR(10) NOT NULL , `SurgeryId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`HeadDoctor` ( `DoctorId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`AssistantDoctor` ( `DoctorId` CHAR(10) NOT NULL , `WorksUnder` CHAR(50) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`AssistantDoctor_operates_Surgery` ( `DoctorId` CHAR(10) NOT NULL , `SurgeryId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`OPDAppointment` ( `OPDAppointmentId` CHAR(10) NOT NULL , `PatientId` CHAR(10) NOT NULL , `Date` DATE NOT NULL , PRIMARY KEY (`OPDAppointmentId`));
+
+CREATE TABLE `hospital_mngt`.`IPDAppointment` ( `IPDAppointmentId` CHAR(10) NOT NULL , `DateOfAdmission` DATE NOT NULL , `RoomNo` CHAR(10) NOT NULL , `BedNo` CHAR(10) NOT NULL , `PatientId` CHAR(10) NOT NULL , PRIMARY KEY (`IPDAppointmentId`));
+
+CREATE TABLE `hospital_mngt`.`Serve` ( `Date` DATE NOT NULL , `BedNo` CHAR(10) NOT NULL , `RoomNo` CHAR(10) NOT NULL , `NurseId` CHAR(10) NOT NULL , `PatientId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`Room` ( `RoomNo` CHAR(10) NOT NULL , `AirConditioned` BOOLEAN NOT NULL , PRIMARY KEY (`RoomNo`));
+
+CREATE TABLE `hospital_mngt`.`AdmissionRoom` ( `RoomNo` CHAR(10) NOT NULL , `NoOfBeds` INT(5) NOT NULL , PRIMARY KEY (`RoomNo`));
+
+CREATE TABLE `hospital_mngt`.`Bed` ( `BedNo` CHAR(10) NOT NULL , `RoomNo` CHAR(10) NOT NULL , PRIMARY KEY (`BedNo`));
+
+CREATE TABLE `hospital_mngt`.`OperationTheater` ( `RoomNo` CHAR(10) NOT NULL , `ICU` BOOLEAN NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`Report` ( `ReportId` CHAR(10) NOT NULL , `Date` DATE NOT NULL , PRIMARY KEY (`ReportId`));
+
+CREATE TABLE `hospital_mngt`.`Prescription` ( `ReportId` CHAR(10) NOT NULL , `Details` VARCHAR(200) NOT NULL , `OPDAppointmentId` CHAR(10) NOT NULL , `DoctorId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`LabReport` ( `ReportId` CHAR(10) NOT NULL , `TestId` CHAR(10) NOT NULL , `Results` VARCHAR(200) NOT NULL , `Remarks` VARCHAR(150) NOT NULL , `LabInchargeId` CHAR(10) NOT NULL , `PatientId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`Bill` ( `BillId` CHAR(10) NOT NULL , `TotalAmount` INT(10) NOT NULL , `PatientId` CHAR(10) NOT NULL , `Date` DATE NOT NULL , PRIMARY KEY (`BillId`));
+
+CREATE TABLE `hospital_mngt`.`OPDBill` ( `BillId` CHAR(10) NOT NULL , `DoctorId` CHAR(10) NOT NULL , `ReceptionistId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`IPDBill` ( `BillId` CHAR(10) NOT NULL , `ReceptionistId` CHAR(10) NOT NULL , `DoctorId` CHAR(10) NOT NULL , `BedNo` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`LabBill` ( `BillNo` CHAR(10) NOT NULL , `TestId` CHAR(10) NOT NULL , `TestDetails` VARCHAR(150) NOT NULL , `ReportPickup` DATE NOT NULL , `ReportId` CHAR(10) NOT NULL , `LabInchargeId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`PharmacyBill` ( `BillId` CHAR(10) NOT NULL , `PharmacistId` CHAR(10) NOT NULL );
+
+CREATE TABLE `hospital_mngt`.`Medicine` ( `MedicineId` CHAR(10) NOT NULL , `MedicineName` VARCHAR(50) NOT NULL , `Quantity` INT(10) NOT NULL , `CompanyName` VARCHAR(50) NOT NULL , `Cost` INT(10) NOT NULL , `MedicineType` VARCHAR(50) NOT NULL , `DrugDescription` VARCHAR(200) NOT NULL , PRIMARY KEY (`MedicineId`));
+
+CREATE TABLE `hospital_mngt`.`Medicine_in_PharmacyBill` ( `BillId` CHAR(10) NOT NULL , `MedicineId` CHAR(10) NOT NULL , `Quantity` INT(10) NOT NULL );
+
+
+
+ALTER TABLE `Doctor` ADD UNIQUE(`PersonId`);
+ALTER TABLE `Doctor` ADD CONSTRAINT `person_fk` FOREIGN KEY (`PersonId`) REFERENCES `person`(`PersonId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabIncharge` ADD UNIQUE(`PersonId`);
+ALTER TABLE `LabIncharge` ADD FOREIGN KEY (`PersonId`) REFERENCES `person`(`PersonId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Nurse` ADD UNIQUE(`PersonId`);
+ALTER TABLE `Nurse` ADD FOREIGN KEY (`PersonId`) REFERENCES `person`(`PersonId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Patient` ADD UNIQUE(`PersonId`);
+ALTER TABLE `Patient` ADD FOREIGN KEY (`PersonId`) REFERENCES `person`(`PersonId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Pharmacist` ADD UNIQUE(`PersonId`);
+ALTER TABLE `Pharmacist` ADD FOREIGN KEY (`PersonId`) REFERENCES `person`(`PersonId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Receptionist` ADD UNIQUE(`PersonId`);
+ALTER TABLE `Receptionist` ADD FOREIGN KEY (`PersonId`) REFERENCES `person`(`PersonId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `OPDAppointment` ADD FOREIGN KEY (`PatientId`) REFERENCES `Patient`(`PatientId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `IPDAppointment` ADD FOREIGN KEY (`PatientId`) REFERENCES `Patient`(`PatientId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Prescription` ADD UNIQUE(`ReportId`);
+ALTER TABLE `Prescription` ADD FOREIGN KEY (`ReportId`) REFERENCES `Report`(`ReportId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabReport` ADD UNIQUE(`ReportId`);
+ALTER TABLE `LabReport` ADD FOREIGN KEY (`ReportId`) REFERENCES `Report`(`ReportId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Prescription` ADD UNIQUE(`OPDAppointmentId`);
+ALTER TABLE `Prescription` ADD FOREIGN KEY (`OPDAppointmentId`) REFERENCES `OPDAppointment`(`OPDAppointmentId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabReport` ADD FOREIGN KEY (`PatientId`) REFERENCES `Patient`(`PatientId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabReport` ADD FOREIGN KEY (`LabInchargeId`) REFERENCES `LabIncharge`(`LabInchargeId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabBill` ADD UNIQUE(`ReportId`);
+ALTER TABLE `LabBill` ADD FOREIGN KEY (`ReportId`) REFERENCES `LabReport`(`ReportId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabBill` ADD UNIQUE(`BillNo`);
+ALTER TABLE `LabBill` ADD FOREIGN KEY (`BillId`) REFERENCES `Bill`(`BillId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `IPDBill` ADD UNIQUE(`BillId`);
+ALTER TABLE `IPDBill` ADD FOREIGN KEY (`BillId`) REFERENCES `Bill`(`BillId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `PharmacyBill` ADD UNIQUE(`BillId`);
+ALTER TABLE `PharmacyBill` ADD FOREIGN KEY (`BillId`) REFERENCES `Bill`(`BillId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Prescription` ADD FOREIGN KEY (`DoctorId`) REFERENCES `Doctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `OPDBill` ADD UNIQUE(`BillId`);
+ALTER TABLE `OPDBill` ADD FOREIGN KEY (`BillId`) REFERENCES `Bill`(`BillId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `OPDBill` ADD FOREIGN KEY (`DoctorId`) REFERENCES `Doctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `OPDBill` ADD FOREIGN KEY (`ReceptionistId`) REFERENCES `Receptionist`(`ReceptionistId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `IPDBill` ADD FOREIGN KEY (`ReceptionistId`) REFERENCES `Receptionist`(`ReceptionistId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `IPDBill` ADD FOREIGN KEY (`DoctorId`) REFERENCES `Doctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `IPDBill` ADD FOREIGN KEY (`BedNo`) REFERENCES `Bed`(`BedNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `LabBill` ADD FOREIGN KEY (`LabInchargeId`) REFERENCES `LabIncharge`(`LabInchargeId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `PharmacyBill` ADD FOREIGN KEY (`PharmacistId`) REFERENCES `Pharmacist`(`PharmacistId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Medicine_in_PharmacyBill` ADD FOREIGN KEY (`BillId`) REFERENCES `PharmacyBill`(`BillId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Medicine_in_PharmacyBill` ADD FOREIGN KEY (`MedicineId`) REFERENCES `Medicine`(`MedicineId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Bill` ADD FOREIGN KEY (`PatientId`) REFERENCES `Patient`(`PatientId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `AdmissionRoom` ADD UNIQUE(`RoomNo`);
+ALTER TABLE `AdmissionRoom` ADD FOREIGN KEY (`RoomNo`) REFERENCES `Room`(`RoomNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Bed` ADD FOREIGN KEY (`RoomNo`) REFERENCES `Room`(`RoomNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `OperationTheater` ADD UNIQUE(`RoomNo`);
+ALTER TABLE `OperationTheater` ADD FOREIGN KEY (`RoomNo`) REFERENCES `Room`(`RoomNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Surgery` ADD FOREIGN KEY (`IPDAppointmentId`) REFERENCES `IPDAppointment`(`IPDAppointmentId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Surgery` ADD UNIQUE(`RoomId`);
+ALTER TABLE `Surgery` ADD FOREIGN KEY (`RoomNo`) REFERENCES `OperationTheater`(`RoomNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `HeadDoctor` ADD UNIQUE(`DoctorId`);
+ALTER TABLE `HeadDoctor` ADD FOREIGN KEY (`DoctorId`) REFERENCES `Doctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `AssistantDoctor` ADD UNIQUE(`DoctorId`);
+ALTER TABLE `AssistantDoctor` ADD FOREIGN KEY (`DoctorId`) REFERENCES `Doctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Surgery` ADD UNIQUE(`DoctorId`);
+ALTER TABLE `Surgery` ADD FOREIGN KEY (`DoctorId`) REFERENCES `HeadDoctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `AssistantDoctor_operates_Surgery` ADD FOREIGN KEY (`DoctorId`) REFERENCES `AssistantDoctor`(`DoctorId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `AssistantDoctor_operates_Surgery` ADD FOREIGN KEY (`SurgeryId`) REFERENCES `Surgery`(`SurgeryId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `Nurse_in_Surgery` ADD FOREIGN KEY (`SurgeryId`) REFERENCES `Surgery`(`SurgeryId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Nurse_in_Surgery` ADD FOREIGN KEY (`NurseId`) REFERENCES `Nurse`(`NurseId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+INSERT INTO `Person` (`PersonId`, `FirstName`, `LastName`, `MiddleName`, `DateOfBirth`, `Address`, `Gender`, `Description`, `ContactNo`, `Password`) VALUES ('P00001', 'Het', 'Jagani', 'H', '1998-10-14', 'Rajkot', '0', 'good man', '9879219608', MD5('password')), ('P00002', 'Nikhil', 'Balwani', 'N', '1998-02-10', 'Ahmedabad', '0', 'desc', '1234567890', MD5('password')), ('P00003', 'Parshwa', 'Shah', 'K', '1998-01-01', 'Ahmedabad', '0', 'desd', '9876543210', MD5('password')), ('P00004', 'Krupali', 'Mewada', 'H', '1997-05-30', 'ahmedabad', '1', 'dess', '7418529630', MD5('pass')), ('P00005', 'Shruti', 'Hindocha', 'S', '1998-02-20', 'Ahm', '1', 'sh', '9638527410', MD5('pass'));
+INSERT INTO `Person` (`PersonId`, `FirstName`, `LastName`, `MiddleName`, `DateOfBirth`, `Address`, `Gender`, `Description`, `ContactNo`, `Password`) VALUES ('P00006', 'John', 'Appleseed', 'J', '1990-05-4', 'california', '0', 'heid', '854697123', MD5('pass'));
+INSERT INTO `Person` (`PersonId`, `FirstName`, `LastName`, `MiddleName`, `DateOfBirth`, `Address`, `Gender`, `Description`, `ContactNo`, `Password`) VALUES ('P00007', 'Jake', 'Sparrow', 'J', '1990-05-4', 'new jersey', '0', 'dfdsf', '854697123', MD5('pass'));
+
+INSERT INTO `Person` (`PersonId`, `FirstName`, `LastName`, `MiddleName`, `DateOfBirth`, `Address`, `Gender`, `Description`, `ContactNo`, `Password`) VALUES ('P00008', 'Kate', 'Smith', 'J', '1990-05-4', 'california', '1', 'heid', '854697123', MD5('pass'));
+
+INSERT INTO `Doctor` (`DoctorId`, `Type`, `Specialization`, `Surgeon`, `VisitCost`, `PersonId`) VALUES ('D00001', 'expert', 'neurology', '1', '1000', 'P00001'), ('D00002', 'med', 'cardiology', '1', '700', 'P00002');
+
+INSERT INTO `HeadDoctor` (`DoctorId`) VALUES ('D00001'), ('D00002');
+
+INSERT INTO `AssistantDoctor` (`DoctorId`, `worksUnder`) VALUES ('D00003', 'Nikhil');
+
+INSERT INTO `Nurse` (`NurseId`, `PersonId`) VALUES ('N00001', 'P00004');
+INSERT INTO `Receptionist` (`ReceptionistId`, `PersonId`) VALUES ('R00001', 'P00005');
+INSERT INTO `LabIncharge` (`LabInchargeId`, `PersonId`) VALUES ('LI00001', 'P00006');
+INSERT INTO `Pharmacist` (`PharmacistId`, `PersonId`) VALUES ('PH00001', 'P00007');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
