@@ -170,7 +170,7 @@ INSERT INTO `Receptionist` (`ReceptionistId`, `PersonId`) VALUES ('R00001', 'P00
 INSERT INTO `LabIncharge` (`LabInchargeId`, `PersonId`) VALUES ('LI00001', 'P00006');
 INSERT INTO `Pharmacist` (`PharmacistId`, `PersonId`) VALUES ('PH00001', 'P00007');
 
-
+INSERT INTO `Patient` (`PatientId`, `Height`, `Weight`, `BloodGroup`, `PersonId`) VALUES ('PA00001', '155', '65', 'B+', 'P00008');
 
 
 

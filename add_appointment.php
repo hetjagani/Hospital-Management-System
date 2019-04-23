@@ -1,3 +1,8 @@
+<?php
+  require 'connect.php';
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +26,25 @@
   </table>
   <hr>
 
-  <form action="" method="post">
+  <?php
+    if(isset($_POST)){
+      $query = 'SELECT PatientId, PersonId, ContactNo FROM Patient JOIN Person USING(PersonId) WHERE ContactNo = "'.$_POST['con_no'].'"';
+
+      $run_query = mysqli_query($conn, $query) or die(mysqli_error($conn));
+      $data = mysqli_fetch_assoc($run_query);
+      if(isset($data)){
+        $patient_id = $data['PatientId'];
+      }else
+          echo '<h4>Provided contact number is not found in database.</h4>';
+    }
+  ?>
+
+  <form action="add_appointment_db.php" method="post">
   <table>
 
     <tr>
       <td>Patient ID :</td>
-      <td>XXXX</td>
+      <td><input type="text" name="appoi_pat_id" value=<?php echo '"'.$patient_id.'"'; ?>></td>
     </tr>
     <tr>
       <td>Date :</td>
@@ -43,13 +61,16 @@
     </tr>
     <tr>
       <td>Room No :</td>
-      <td><input type="date" name="appoi_room" id=""></td>
+      <td><input type="text" name="appoi_room" id=""></td>
     </tr>
     <tr>
       <td>Bed No :</td>
-      <td><input type="date" name="appoi_id" id=""></td>
+      <td><input type="text" name="appoi_bed" id=""></td>
     </tr>
-
+    <tr>
+      <td></td>
+      <td> <input type="submit" name="submit"> </td>
+    </tr>
   </table>
   </form>
 

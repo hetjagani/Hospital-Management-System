@@ -11,7 +11,7 @@
   <center>
   
   <h2>Register Patient</h2>
-  <form action="" method="post" id="pat_reg_form">
+  <form action="register_patient_db.php" method="post" id="pat_reg_form">
   
   <table>
   
@@ -29,7 +29,7 @@
     </tr>
     <tr>
       <td>Date of Birth : </td>
-      <td><input type="text" name="patient_dob" id=""></td>
+      <td><input type="date" name="patient_dob" id=""></td>
     </tr>
     <tr>
       <td>Gender : </td>

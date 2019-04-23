@@ -1,6 +1,8 @@
 <?php 
   require 'connect.php';
   session_start();
+
+  $doc_id = $_SESSION['h_doc_id'];
 ?>
 <!DOCTYPE html>
 <html>
