@@ -49,6 +49,9 @@
       <td> XXX </td>
     </tr>
   </table>
+    <hr>
+    <a href="index.php"> LOGOUT </a> <br>
+    <hr>
 </center>
 </body>
 </html>

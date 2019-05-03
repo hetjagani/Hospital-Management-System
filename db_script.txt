@@ -172,8 +172,10 @@ INSERT INTO `Pharmacist` (`PharmacistId`, `PersonId`) VALUES ('PH00001', 'P00007
 
 INSERT INTO `Patient` (`PatientId`, `Height`, `Weight`, `BloodGroup`, `PersonId`) VALUES ('PA00001', '155', '65', 'B+', 'P00008');
 
+INSERT INTO `Room` (`RoomNo`, `AirConditioned`) VALUES ('1', '0'), ('2', '1'), ('3', '1'), ('4', '1'), ('5', '0');
+INSERT INTO `AdmissionRoom` (`RoomNo`, `NoOfBeds`) VALUES ('1', '10'), ('2', '20'),('3', '10'),('4', '15'),('5', '5');
 
-
+INSERT INTO `OperationTheatre` (`RoomNo`, `ICU`) VALUES ('2', '1'), ('3', '0');
 
 
 

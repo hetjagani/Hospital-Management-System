@@ -99,10 +99,10 @@
   if($login_sucess === 1){
     if($_POST["acc_type"] == "h_doc") {
       header('Location: head_doctor_menu.php');
-      $_SESSION['h_doc_id'] = $_POST['uname'];
+      $_SESSION['doc_id'] = $_POST['uname'];
     }else if ($_POST["acc_type"] == "a_doc") {
       header('Location: assistant_doctor_menu.php');
-      $_SESSION['a_doc_id'] = $_POST['uname'];
+      $_SESSION['doc_id'] = $_POST['uname'];
     }else if ($_POST["acc_type"] == "nurse") {
       header('Location: nurse_menu.php');
       $_SESSION['nurse_id'] = $_POST['uname'];

@@ -1,8 +1,6 @@
 <?php 
-  require 'connect.php';
   session_start();
-
-  $doc_id = $_SESSION['h_doc_id'];
+  $_SESSION['h_doc'] = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +22,8 @@
     <a href="add_surgery.php"> Add Surgery </a> <br>
     <hr>
     <a href="view_surgery.php"> View Surgery Details </a> <br>
+    <hr>
+    <a href="index.php"> LOGOUT </a> <br>
     <hr>
   </center>
 </body>

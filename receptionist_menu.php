@@ -23,6 +23,8 @@
     <hr>
     <a href="view_bill.php"> View Bill </a> <br>
     <hr>
+    <a href="index.php"> LOGOUT </a> <br>
+    <hr>
   </center>
 </body>
 </html>

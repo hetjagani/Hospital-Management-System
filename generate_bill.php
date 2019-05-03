@@ -49,7 +49,7 @@
     $name = mysqli_fetch_assoc($run);
     $recept_name = $name['FirstName'].' '.$name['LastName'];
   ?>
-  
+  <a href="receptionist_menu.php">Goto Receptionist menu</a>
   <form action="generate_bill_db.php" method="POST">
   <table border>
   

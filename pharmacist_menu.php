@@ -18,6 +18,8 @@
     <hr>
     <a href="enter_medicine.php"> Enter Medicine </a> <br>
     <hr>
+    <a href="index.php"> LOGOUT </a> <br>
+    <hr>
   </center>
 </body>
 </html>

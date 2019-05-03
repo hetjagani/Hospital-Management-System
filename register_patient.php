@@ -35,7 +35,7 @@
       <td>Gender : </td>
       <td><input type="radio" name="patient_gen" value="male" checked> Male
           <input type="radio" name="patient_gen" value="female"> Female
-          <input type="radio" name="patient_gen value="other"> Other</td>
+          <input type="radio" name="patient_gen" value="other"> Other</td>
     </tr>
     <tr>
       <td>Contact No : </td>

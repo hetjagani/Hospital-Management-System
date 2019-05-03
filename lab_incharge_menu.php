@@ -16,6 +16,8 @@
     <hr>
     <a href="view_lab_bill.php"> View Lab Bill </a> <br>
     <hr>
+    <a href="index.php"> LOGOUT </a> <br>
+    <hr>
   </center>
 </body>
 </html>

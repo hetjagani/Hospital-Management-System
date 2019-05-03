@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $_SESSION = array();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
