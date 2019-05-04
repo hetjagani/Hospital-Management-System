@@ -6,27 +6,36 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+        <link rel="stylesheet" href="project.css">
+    
     <title>Login page</title>
   </head>
   <body>
     <center>
     
-      <h2> LOGIN </h2>
-      <hr>
+      <h2> Hospital Management System </h2>
+
       <form action="login.php" method="POST">
-        <table>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <table class="div1">
           <tr>
-            <td> USERID : </td>
-            <td> <input type="text" name="uname"> </td>
+            <td> <center> <br>  User ID: </center> </td>
+            <td> <br> <input type="text" name="uname"> </td>
           </tr>
           <tr>
-            <td> PASSWORD : </td>
-            <td> <input type="password" name="pass"> </td>
+            <td> <center> <br> Password: </center> </td>
+            <td> <br> <input type="password" name="pass"> </td>
           </tr>
+          </table>
           
+          
+          <table>          
           <tr>
             <td>
+            <center>
+            <br> <br>
               <select name="acc_type">
+                &nbsp; &nbsp; &nbsp; &nbsp;
                 <option value="nurse">Nurse</option>
                 <option value="recept">Receptionist</option>
                 <option value="h_doc">Head Doctor</option>
@@ -34,8 +43,9 @@
                 <option value="lab_incharge">Lab Incharge</option>
                 <option value="pharma">Pharmacist</option>
               </select>
+              </center>
             </td>
-            <td> <input type="submit" name="submit" value="login"> </td>
+            <td> <br> <br>  <input type="submit" name="submit" value="Login"> </td>
           </tr>
         </table>
       </form>
