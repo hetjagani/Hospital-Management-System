@@ -61,8 +61,8 @@
         $test_name = [
           '001' => 'blood test',
           '002' => 'urine test',
-          '002' => 'blood pressure check',
-          '003' => 'eyes checkup'
+          '003' => 'blood pressure check',
+          '004' => 'eyes checkup'
         ];
 
         //lab incharge name
