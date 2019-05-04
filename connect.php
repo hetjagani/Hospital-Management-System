@@ -1,7 +1,7 @@
 <?php
 	$servername = "localhost";
-	$username = "het";
-	$password = "admin";
+	$username = "root";
+	$password = "windowsubuntu1!";
 
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password);
@@ -11,6 +11,6 @@
 	    die("Connection failed: " . mysqli_connect_error());
 	}
 
-	mysqli_select_db($conn,'mydb');
+	mysqli_select_db($conn,'hoapital_mngt');
 
 ?>

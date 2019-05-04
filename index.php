@@ -14,16 +14,16 @@
     <center>
     
       <h2> Hospital Management System </h2>
-      <hr>
+
       <form action="login.php" method="POST">
-        
-        <table style="bord">
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <table class="div1">
           <tr>
-            <td> <center> <br> User ID: </center> </td>
+            <td> <center> <br>  User ID: </center> </td>
             <td> <br> <input type="text" name="uname"> </td>
           </tr>
           <tr>
-            <td> <center> <br> Password : </center> </td>
+            <td> <center> <br> Password: </center> </td>
             <td> <br> <input type="password" name="pass"> </td>
           </tr>
           </table>
@@ -45,7 +45,7 @@
               </select>
               </center>
             </td>
-            <td> <br> <br> &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" name="submit" value="Login"> </td>
+            <td> <br> <br>  <input type="submit" name="submit" value="Login"> </td>
           </tr>
         </table>
       </form>
