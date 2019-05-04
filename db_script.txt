@@ -177,7 +177,15 @@ INSERT INTO `AdmissionRoom` (`RoomNo`, `NoOfBeds`) VALUES ('1', '10'), ('2', '20
 
 INSERT INTO `OperationTheatre` (`RoomNo`, `ICU`) VALUES ('2', '1'), ('3', '0');
 
+ALTER TABLE `Bed` DROP PRIMARY KEY, ADD PRIMARY KEY( `BedNo`, `RoomNo`);
+INSERT INTO `Bed` (`BedNo`, `RoomNo`) VALUES ('1', '1'), ('2', '1'), ('3', '1'), ('4', '1'), ('5', '1');
+INSERT INTO `Bed` (`BedNo`, `RoomNo`) VALUES ('1', '2'), ('2', '2'), ('3', '2'), ('4', '2'), ('5', '2'), ('6', '2'), ('7', '2'), ('8', '2'), ('9', '2'), ('10', '2');
 
+ALTER TABLE `Serve` DROP FOREIGN KEY `fk_Serve_AdmissionRoom1`; ALTER TABLE `Serve` ADD CONSTRAINT `fk_Serve_AdmissionRoom1` FOREIGN KEY (`RoomNo`) REFERENCES `Bed`(`BedNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `Serve` DROP FOREIGN KEY `fk_Serve_AdmissionRoom1`; ALTER TABLE `Serve` ADD CONSTRAINT `fk_Serve_AdmissionRoom1` FOREIGN KEY (`RoomNo`) REFERENCES `Bed`(`RoomNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `Serve` CHANGE `PatientId` `IPDAppointmentId` CHAR(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+INSERT INTO `Serve` (`Date`, `BedNo`, `IPDAppointmentId`, `NurseId`, `RoomNo`) VALUES ('2019-05-04', '5', 'IPD00001', 'N00001', '2'), ('2019-05-04', '6', 'IPD00002', 'N00001', '2'), ('2019-05-06', '3', 'IPD00001', 'N00001', '1');
 
 
 
