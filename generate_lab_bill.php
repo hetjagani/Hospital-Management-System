@@ -108,12 +108,15 @@
               <tr>
                 <td>Report Pickup Date : </td>
                 <td>'.++$pickup_date.'</td>
-              </tr>
-              </table><hr>';
-
+              </tr>';
         $flag = 1;
         $total_amount += $test_amount[$rep_data['TestId']];
 
+        echo '<tr>
+                <td><b>Total Amount : </b></td>
+                <td>'.$total_amount.'</td>
+              </tr>';
+        echo '</table><hr>';
         //add data to bill table
         $add_bill_q = 'INSERT INTO `Bill` (`BillNo`, `TotalAmount`, `PatientId`, `Date`) VALUES ("'.$bill_no.'", "'.$total_amount.'", "'.$patient_id.'", "'.$pickup_date.'");';
         mysqli_query($conn, $add_bill_q) or die(mysqli_error($conn));
