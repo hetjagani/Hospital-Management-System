@@ -19,8 +19,6 @@
     <hr>
     <a href="generate_pharma_bill.php"> Generate Bill </a> <br>
     <hr>
-    <a href=""> View Bill </a> <br>
-    <hr>
     <a href="enter_medicine.php"> Enter Medicine </a> <br>
     <hr>
     <a href="index.php"> LOGOUT </a> <br>
