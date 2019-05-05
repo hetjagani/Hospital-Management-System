@@ -7,11 +7,13 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="project.css">  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Add Surgery</title>
 </head>
 <body>
   <center>
+  <p>  Hospital Management System  </p>
   <h2>Add Surgery</h2>
 
   <hr>

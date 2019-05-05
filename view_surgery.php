@@ -8,11 +8,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="project.css">
+
   <title>View Surgery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <center>
+    <p>  Hospital Management System  </p>
   <h2>Surgeries</h2>
   <hr>
   <table>
@@ -46,7 +49,7 @@
       echo '<a href="assistant_doctor_menu.php">Assistant Doctor Menu</a>';
     } 
   ?>
-  <hr><hr>
+
   <?php
     while ($sur_data = mysqli_fetch_assoc($sur_run)) {
       //doctor name

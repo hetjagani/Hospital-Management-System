@@ -6,6 +6,8 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="project.css">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lab Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +15,8 @@
 <body>
   
   <center>
-  
+  <p>  Hospital Management System  </p>
+
   <h2>Patient Lab Reports</h2>
   <hr>
   <table>
@@ -43,7 +46,6 @@
       }else
           echo '<h4>Provided contact number is not found in database.</h4>';
     }
-
     if($_SESSION['h_doc'] === 1){
       echo '<a href="head_doctor_menu.php">Head Doctor Menu</a>';
     } elseif ($_SESSION['a_doc'] === 1) {
@@ -54,8 +56,7 @@
     $lab_rep_que = 'SELECT * FROM LabReport JOIN Report USING(ReportNo) WHERE PatientId = "'.$patient_id.'" ORDER BY DATE DESC;';
     $run_lab_rep = mysqli_query($conn, $lab_rep_que) or die(mysqli_error($conn)); 
   ?>
-  <hr>
-  <hr>
+  
   <?php
     while ($report_data = mysqli_fetch_assoc($run_lab_rep)) {
         $test_name = [

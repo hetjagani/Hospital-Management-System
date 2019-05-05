@@ -1,5 +1,5 @@
 body {
-      font-family: Product Sans;
+      font-family: sans-serif;
       /*background-image: url(hospital-management-system-background-9.jpg); */
       background-repeat: no-repeat;
       background-size: cover;
@@ -7,7 +7,7 @@ body {
       }
 
 p   {
-	font-family: Product Sans;
+	font-family: sans-serif;
       /*background-image: url(hospital-management-system-background-9.jpg);
      background: linear-gradient(to right, #bdc447, #1c3e50); */
       background-repeat: no-repeat;
@@ -36,6 +36,7 @@ a {
 	border-top-width: 0px;
 	border-left-width: 0px;
 }
+
 
 .vertical-menu {
   width: 250px; /* Set a width if you like */
@@ -87,6 +88,8 @@ a {
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
+  cursor: pointer;
+
 }
 
 /* Position and style the close button (top right corner) */
