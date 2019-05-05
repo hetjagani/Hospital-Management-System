@@ -1,3 +1,8 @@
+<?php
+  require 'connect.php';
+  session_start();
+  $phar_id = $_SESSION['pharma_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +19,52 @@
   <table>
     <tr>
         <td>Patient Contact No : </td>
-          <form action="" method="post">
-            <td><input type="text" name="con_no" id=""></td>
-            <td><input type="date" name="rep_date" id=""></td>
-            <td><input type="submit" name="search" value="Search" id=""></td>
-          </form>
+        <form action="" method="post">
+          <td><input type="text" name="con_no" id=""></td>
+          <td><input type="date" name="date"></td>
+          <td><input type="submit" name="search" value="Search" id=""></td>
+        </form>
     </tr>
   </table>
+  <hr>
+  
+  <?php
+    // get patient id from phone number 
+    if(isset($_POST)){
+      $query = 'SELECT * FROM Patient JOIN Person USING(PersonId) WHERE ContactNo = "'.$_POST['con_no'].'"';
+
+      $run_query = mysqli_query($conn, $query) or die(mysqli_error($conn));
+      $pat_data = mysqli_fetch_assoc($run_query);
+      if(isset($pat_data)){
+        $patient_id = $pat_data['PatientId'];
+        $_SESSION['patient_id'] = $patient_id;
+        $_SESSION['bill_date'] = $_POST['date'];
+        header('Location: generate_pharma_bill_next.php');
+      }else
+          echo '<h4>Provided contact number is not found in database.</h4>';
+
+      //get new bill id
+      $query = 'SELECT * FROM Bill;'; 
+      $run_query = mysqli_query($conn,$query) or die(mysqli_error($conn));
+      while($data = mysqli_fetch_assoc($run_query)){
+        $lastid =  $data['BillNo'];
+      }
+      if(isset($lastid)){
+        $bill_no = ++$lastid;
+      }else{
+        $bill_no = 'B00001';
+      }
+
+      $_SESSION['bill_no'] = $bill_no;
+      //add bill entry
+      $bill_query = 'INSERT INTO `Bill` (`BillNo`, `PatientId`, `Date`) VALUES ("'.$bill_no.'", "'.$patient_id.'", "'.$_POST['date'].'");';
+      mysqli_query($conn, $bill_query) or die(mysqli_error($conn));
+
+      //add pharmasict bill 
+      $pharma_bill_q = 'INSERT INTO `PharmacyBill` (`BillNo`, `PharmacistId`) VALUES ("'.$bill_no.'", "'.$phar_id.'");';
+      mysqli_query($conn, $pharma_bill_q) or die(mysqli_error($conn));
+    }
+  ?>
   <hr>
 
   <form action="" method="post">

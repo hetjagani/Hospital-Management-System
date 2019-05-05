@@ -27,7 +27,12 @@
             <td> <br> <input type="password" name="pass"> </td>
           </tr>
           </table>
-          
+          <?php
+            if(isset($_GET)){
+              if($_GET['login'] == 0)
+                echo '<h3>Invalid credentials</h3>';
+            }
+          ?>
           
           <table>          
           <tr>

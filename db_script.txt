@@ -187,6 +187,8 @@ ALTER TABLE `Serve` CHANGE `PatientId` `IPDAppointmentId` CHAR(25) CHARACTER SET
 
 INSERT INTO `Serve` (`Date`, `BedNo`, `IPDAppointmentId`, `NurseId`, `RoomNo`) VALUES ('2019-05-04', '5', 'IPD00001', 'N00001', '2'), ('2019-05-04', '6', 'IPD00002', 'N00001', '2'), ('2019-05-06', '3', 'IPD00001', 'N00001', '1');
 
+INSERT INTO `Medicine` (`MedicineId`, `MedicineName`, `Quantity`, `CompanyName`, `Cost`, `MedicineType`, `DrugDescription`) VALUES ('Med00001', 'Nimesulite', '100', 'Zydus', '5', 'Antibiotic', 'good medicine'), ('Med00002', 'Metacine', '50', 'Cadilla', '10', 'Painkiller', 'generic drug'), ('Med00003', 'Crocin', '60', 'Zydus', '15', 'Antibiotic', 'Cures fever'), ('Med00004', 'Abacavir', '40', 'Cadilla', '10', 'Antibiotic', 'Cures cold'), ('Med00005', 'Paracitamol', '100', 'V Care', '2.5', 'Painkiller', 'cures pain');
+
 
 
 
