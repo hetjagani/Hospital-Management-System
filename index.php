@@ -13,11 +13,11 @@
   <body>
     <center>
     
-      <h2> Hospital Management System </h2>
-
+      <p>  Hospital Management System  </p>
+	<div = class="login">
       <form action="login.php" method="POST">
         &nbsp; &nbsp; &nbsp; &nbsp;
-        <table class="div1">
+        <table>
           <tr>
             <td> <center> <br>  User ID: </center> </td>
             <td> <br> <input type="text" name="uname"> </td>
@@ -49,7 +49,7 @@
           </tr>
         </table>
       </form>
-    
+    </div>
     </center>
   </body>
 </html>

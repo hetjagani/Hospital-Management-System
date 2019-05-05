@@ -6,12 +6,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="project.css">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Prescription</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+<center>
+      <p>  Hospital Management System  </p>
+</center>
+
   <center>
   <h2>Prescription</h2>
   <hr>

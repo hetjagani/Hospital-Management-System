@@ -12,10 +12,17 @@
   <title>Head Doctor Menu</title>
 </head>
 <body>
+<center>
+      <p>  Hospital Management System  </p>
+</center>
+
   <center>
+	<div class="vertical-menu">
     <h2> Head Doctor </h2>
     
-    <a href="give_prescription.php"> Give Prescription </a> <br>
+
+
+    <a  href="give_prescription.php"> Give Prescription </a> <br>
    
     <a href="view_patient_hist.php"> View Patient History </a> <br>
    
@@ -25,8 +32,8 @@
    
     <a href="view_surgery.php"> View Surgery Details </a> <br>
    
-    <a href="index.php"> LOGOUT </a> <br>
-   
+    <a href="index.php"> Logout </a> <br>
+   </div>
   </center>
 </body>
 </html>

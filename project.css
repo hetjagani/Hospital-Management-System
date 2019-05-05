@@ -1,19 +1,126 @@
 body {
-      font-family: sans-serif;
-      background-image: url(hospital-management-system-background-9.jpg); 
+      font-family: Product Sans;
+      /*background-image: url(hospital-management-system-background-9.jpg); */
       background-repeat: no-repeat;
       background-size: cover;
+      background: #DFE3ee;
       }
 
-h2   {
-      font-family: Arial;
-      font-weight: bold;
-     }
+p   {
+	font-family: Product Sans;
+      /*background-image: url(hospital-management-system-background-9.jpg);
+     background: linear-gradient(to right, #bdc447, #1c3e50); */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background: #3b5999;
+	border-top-width: 5px;
+	border-left-width: 5px;      
+      font-size: 45px;
+      color: white;
+	padding: 20px;
+      }
      
-     
-.div1 {
-            width: 350px;
-            height: 175px;
-            border: 3px solid black;
-            box-sizing: border-box;
-         }
+
+
+a {
+	display: block;
+	background-color: #f7f7f7;
+	color: black;
+	text-decoration: none;
+	font-family: sans-serif;
+	font-size: 1em;
+	padding: 6px 4px;
+	margin: 4px;
+	border-right: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-top-width: 0px;
+	border-left-width: 0px;
+}
+
+.vertical-menu {
+  width: 250px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #f7f7f7; /* Add a green color to the "active/current" link */
+  color: white;
+}
+
+
+
+ /* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} 
+
+
+
+/*
+LOGIN
+*/
+.login {
+  background: #eceeee;
+  border: 1px solid #42464b;
+  border-radius: 6px;
+  height: 257px;
+  margin: 20px auto 0;
+  width: 450px;
+}
+
