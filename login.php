@@ -118,7 +118,7 @@
       $_SESSION['pharma_id'] = $_POST['uname'];
     }
   }else {
-    header('Location: index.php?login=0');
+    header('Location: index.php?log=true');
   }
     
 
