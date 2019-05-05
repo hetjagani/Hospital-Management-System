@@ -10,7 +10,7 @@
   <center>
   <h2>Enter Medicines</h2>
   <hr>
-  <form action="" method="post">
+  <form action="enter_medicine_db.php" method="post">
   <table border>
   <tr>
     <td>Medicine Name</td>

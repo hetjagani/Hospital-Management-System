@@ -1,3 +1,8 @@
+<?php
+  require 'connect.php';
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +18,6 @@
     <a href="view_available_med.php"> View Available Medicine </a> <br>
     <hr>
     <a href="generate_pharma_bill.php"> Generate Bill </a> <br>
-    <hr>
-    <a href=""> View Bill </a> <br>
     <hr>
     <a href="enter_medicine.php"> Enter Medicine </a> <br>
     <hr>

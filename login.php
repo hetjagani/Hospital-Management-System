@@ -118,7 +118,7 @@
       $_SESSION['pharma_id'] = $_POST['uname'];
     }
   }else {
-    echo "<script type='text/javascript'>alert('Invalid Credentials')</script>";
+    header('Location: index.php?login=0');
   }
     
 

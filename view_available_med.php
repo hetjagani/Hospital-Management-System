@@ -1,3 +1,12 @@
+<?php
+  require 'connect.php';
+  session_start();
+
+  //get all the medicine data
+  $get_med_q = 'SELECT * FROM Medicine';
+  $med_run = mysqli_query($conn, $get_med_q) or die(mysqli_error($conn));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +23,7 @@
   <table border>
   
   <tr>
+    <td>Medicine ID</td>
     <td>Medicine Name</td>
     <td>Medicine Company</td>
     <td>Medicine Type</td>
@@ -21,32 +31,19 @@
     <td>Per Medicine Cost</td>
     <td>Quantity</td>
   </tr>
-  
-  <tr>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>2</td>
-    <td>2</td>
-    <td>2</td>
-    <td>2</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>3</td>
-    <td>3</td>
-    <td>3</td>
-    <td>3</td>
-    <td>3</td>
-  </tr>
-  
+  <?php
+    while($med_data = mysqli_fetch_assoc($med_run)) {
+      echo '<tr>
+          <td>'.$med_data['MedicineId'].'</td>
+          <td>'.$med_data['MedicineName'].'</td>
+          <td>'.$med_data['CompanyName'].'</td>
+          <td>'.$med_data['MedicineType'].'</td>
+          <td>'.$med_data['DrugDescription'].'</td>
+          <td>'.$med_data['Cost'].'</td>
+          <td>'.$med_data['Quantity'].'</td>
+        </tr>';
+    }
+  ?>
   </table>
 
 </center>
