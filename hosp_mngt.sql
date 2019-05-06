@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 05, 2019 at 10:50 AM
--- Server version: 5.7.26-0ubuntu0.18.04.1
+-- Generation Time: May 06, 2019 at 12:17 PM
+-- Server version: 5.7.25-0ubuntu0.18.04.2
 -- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hospital_mngt`
+-- Database: `mydb`
 --
-CREATE DATABASE IF NOT EXISTS `hospital_mngt` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `hospital_mngt`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `hospital_mngt`;
 -- Table structure for table `AdmissionRoom`
 --
 
-DROP TABLE IF EXISTS `AdmissionRoom`;
 CREATE TABLE `AdmissionRoom` (
   `RoomNo` char(5) NOT NULL,
   `NoOfBeds` char(45) DEFAULT NULL
@@ -38,11 +35,12 @@ CREATE TABLE `AdmissionRoom` (
 -- Dumping data for table `AdmissionRoom`
 --
 
-INSERT INTO `AdmissionRoom` VALUES('1', '10');
-INSERT INTO `AdmissionRoom` VALUES('2', '20');
-INSERT INTO `AdmissionRoom` VALUES('3', '10');
-INSERT INTO `AdmissionRoom` VALUES('4', '15');
-INSERT INTO `AdmissionRoom` VALUES('5', '5');
+INSERT INTO `AdmissionRoom` (`RoomNo`, `NoOfBeds`) VALUES
+('1', '10'),
+('2', '20'),
+('3', '10'),
+('4', '15'),
+('5', '5');
 
 -- --------------------------------------------------------
 
@@ -50,7 +48,6 @@ INSERT INTO `AdmissionRoom` VALUES('5', '5');
 -- Table structure for table `AssistantDoctor`
 --
 
-DROP TABLE IF EXISTS `AssistantDoctor`;
 CREATE TABLE `AssistantDoctor` (
   `DoctorId` char(25) NOT NULL,
   `worksUnder` char(45) DEFAULT NULL
@@ -60,8 +57,9 @@ CREATE TABLE `AssistantDoctor` (
 -- Dumping data for table `AssistantDoctor`
 --
 
-INSERT INTO `AssistantDoctor` VALUES('D00003', 'Nikhil');
-INSERT INTO `AssistantDoctor` VALUES('D00004', 'Nikhil');
+INSERT INTO `AssistantDoctor` (`DoctorId`, `worksUnder`) VALUES
+('D00003', 'Nikhil'),
+('D00004', 'Nikhil');
 
 -- --------------------------------------------------------
 
@@ -69,7 +67,6 @@ INSERT INTO `AssistantDoctor` VALUES('D00004', 'Nikhil');
 -- Table structure for table `AssistantDoctor_Operates_Surgery`
 --
 
-DROP TABLE IF EXISTS `AssistantDoctor_Operates_Surgery`;
 CREATE TABLE `AssistantDoctor_Operates_Surgery` (
   `DoctorId` char(25) NOT NULL,
   `SurgeryNo` char(25) NOT NULL
@@ -79,8 +76,11 @@ CREATE TABLE `AssistantDoctor_Operates_Surgery` (
 -- Dumping data for table `AssistantDoctor_Operates_Surgery`
 --
 
-INSERT INTO `AssistantDoctor_Operates_Surgery` VALUES('D00003', 'Sur00001');
-INSERT INTO `AssistantDoctor_Operates_Surgery` VALUES('D00004', 'Sur00001');
+INSERT INTO `AssistantDoctor_Operates_Surgery` (`DoctorId`, `SurgeryNo`) VALUES
+('D00003', 'Sur00001'),
+('D00004', 'Sur00001'),
+('D00004', 'Sur00002'),
+('D00004', 'Sur00003');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,6 @@ INSERT INTO `AssistantDoctor_Operates_Surgery` VALUES('D00004', 'Sur00001');
 -- Table structure for table `Bed`
 --
 
-DROP TABLE IF EXISTS `Bed`;
 CREATE TABLE `Bed` (
   `BedNo` char(5) NOT NULL,
   `RoomNo` char(5) NOT NULL
@@ -98,21 +97,22 @@ CREATE TABLE `Bed` (
 -- Dumping data for table `Bed`
 --
 
-INSERT INTO `Bed` VALUES('1', '1');
-INSERT INTO `Bed` VALUES('2', '1');
-INSERT INTO `Bed` VALUES('3', '1');
-INSERT INTO `Bed` VALUES('4', '1');
-INSERT INTO `Bed` VALUES('5', '1');
-INSERT INTO `Bed` VALUES('1', '2');
-INSERT INTO `Bed` VALUES('10', '2');
-INSERT INTO `Bed` VALUES('2', '2');
-INSERT INTO `Bed` VALUES('3', '2');
-INSERT INTO `Bed` VALUES('4', '2');
-INSERT INTO `Bed` VALUES('5', '2');
-INSERT INTO `Bed` VALUES('6', '2');
-INSERT INTO `Bed` VALUES('7', '2');
-INSERT INTO `Bed` VALUES('8', '2');
-INSERT INTO `Bed` VALUES('9', '2');
+INSERT INTO `Bed` (`BedNo`, `RoomNo`) VALUES
+('1', '1'),
+('2', '1'),
+('3', '1'),
+('4', '1'),
+('5', '1'),
+('1', '2'),
+('10', '2'),
+('2', '2'),
+('3', '2'),
+('4', '2'),
+('5', '2'),
+('6', '2'),
+('7', '2'),
+('8', '2'),
+('9', '2');
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,6 @@ INSERT INTO `Bed` VALUES('9', '2');
 -- Table structure for table `Bill`
 --
 
-DROP TABLE IF EXISTS `Bill`;
 CREATE TABLE `Bill` (
   `BillNo` char(25) NOT NULL,
   `TotalAmount` int(11) DEFAULT NULL,
@@ -132,8 +131,11 @@ CREATE TABLE `Bill` (
 -- Dumping data for table `Bill`
 --
 
-INSERT INTO `Bill` VALUES('B00001', 1500, 'PA00002', '2019-04-23');
-INSERT INTO `Bill` VALUES('B00002', 5000, 'PA00002', '2019-04-19');
+INSERT INTO `Bill` (`BillNo`, `TotalAmount`, `PatientId`, `Date`) VALUES
+('B00001', 1500, 'PA00002', '2019-04-23'),
+('B00002', 5000, 'PA00002', '2019-04-19'),
+('B00003', 500, 'PA00002', '2019-05-03'),
+('B00004', 25, 'PA00002', '2019-05-05');
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,6 @@ INSERT INTO `Bill` VALUES('B00002', 5000, 'PA00002', '2019-04-19');
 -- Table structure for table `Doctor`
 --
 
-DROP TABLE IF EXISTS `Doctor`;
 CREATE TABLE `Doctor` (
   `DoctorId` char(25) NOT NULL,
   `Type` char(25) DEFAULT NULL,
@@ -155,10 +156,11 @@ CREATE TABLE `Doctor` (
 -- Dumping data for table `Doctor`
 --
 
-INSERT INTO `Doctor` VALUES('D00001', 'expert', 'neurology', '1', 1000, 'P00001');
-INSERT INTO `Doctor` VALUES('D00002', 'med', 'cardiology', '1', 700, 'P00002');
-INSERT INTO `Doctor` VALUES('D00003', 'mbbs', 'pediatrition', '1', 800, 'P00003');
-INSERT INTO `Doctor` VALUES('D00004', 'neurologist', 'brain', '1', 1000, 'P00010');
+INSERT INTO `Doctor` (`DoctorId`, `Type`, `Specialization`, `Surgeon`, `VisitCost`, `PersonId`) VALUES
+('D00001', 'expert', 'neurology', '1', 1000, 'P00001'),
+('D00002', 'med', 'cardiology', '1', 700, 'P00002'),
+('D00003', 'mbbs', 'pediatrition', '1', 800, 'P00003'),
+('D00004', 'neurologist', 'brain', '1', 1000, 'P00010');
 
 -- --------------------------------------------------------
 
@@ -166,7 +168,6 @@ INSERT INTO `Doctor` VALUES('D00004', 'neurologist', 'brain', '1', 1000, 'P00010
 -- Table structure for table `HeadDoctor`
 --
 
-DROP TABLE IF EXISTS `HeadDoctor`;
 CREATE TABLE `HeadDoctor` (
   `DoctorId` char(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -175,8 +176,9 @@ CREATE TABLE `HeadDoctor` (
 -- Dumping data for table `HeadDoctor`
 --
 
-INSERT INTO `HeadDoctor` VALUES('D00001');
-INSERT INTO `HeadDoctor` VALUES('D00002');
+INSERT INTO `HeadDoctor` (`DoctorId`) VALUES
+('D00001'),
+('D00002');
 
 -- --------------------------------------------------------
 
@@ -184,7 +186,6 @@ INSERT INTO `HeadDoctor` VALUES('D00002');
 -- Table structure for table `IPDAppointment`
 --
 
-DROP TABLE IF EXISTS `IPDAppointment`;
 CREATE TABLE `IPDAppointment` (
   `IPDAppointmentId` char(25) NOT NULL,
   `DateOfAdmission` date NOT NULL,
@@ -197,8 +198,9 @@ CREATE TABLE `IPDAppointment` (
 -- Dumping data for table `IPDAppointment`
 --
 
-INSERT INTO `IPDAppointment` VALUES('IPD00001', '2019-04-22', '2', '5', 'PA00002');
-INSERT INTO `IPDAppointment` VALUES('IPD00002', '2019-05-04', '2', '6', 'PA00001');
+INSERT INTO `IPDAppointment` (`IPDAppointmentId`, `DateOfAdmission`, `RoomNo`, `BedNo`, `PatientId`) VALUES
+('IPD00001', '2019-04-22', '2', '5', 'PA00002'),
+('IPD00002', '2019-05-04', '2', '6', 'PA00001');
 
 -- --------------------------------------------------------
 
@@ -206,7 +208,6 @@ INSERT INTO `IPDAppointment` VALUES('IPD00002', '2019-05-04', '2', '6', 'PA00001
 -- Table structure for table `IPDBill`
 --
 
-DROP TABLE IF EXISTS `IPDBill`;
 CREATE TABLE `IPDBill` (
   `BillNo` char(25) NOT NULL,
   `ReceptionistId` char(25) NOT NULL,
@@ -220,7 +221,6 @@ CREATE TABLE `IPDBill` (
 -- Table structure for table `LabBill`
 --
 
-DROP TABLE IF EXISTS `LabBill`;
 CREATE TABLE `LabBill` (
   `BillNo` char(25) NOT NULL,
   `TestId` char(5) DEFAULT NULL,
@@ -230,13 +230,19 @@ CREATE TABLE `LabBill` (
   `LabInchargeId` char(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `LabBill`
+--
+
+INSERT INTO `LabBill` (`BillNo`, `TestId`, `TestDetails`, `ReportPickup`, `ReportNo`, `LabInchargeId`) VALUES
+('B00003', '001', 'positive', '2019-05-03 00:00:00', 'Rep00003', 'LI00001');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `LabIncharge`
 --
 
-DROP TABLE IF EXISTS `LabIncharge`;
 CREATE TABLE `LabIncharge` (
   `LabInchargeId` char(25) NOT NULL,
   `PersonId` char(25) NOT NULL
@@ -246,7 +252,8 @@ CREATE TABLE `LabIncharge` (
 -- Dumping data for table `LabIncharge`
 --
 
-INSERT INTO `LabIncharge` VALUES('LI00001', 'P00006');
+INSERT INTO `LabIncharge` (`LabInchargeId`, `PersonId`) VALUES
+('LI00001', 'P00006');
 
 -- --------------------------------------------------------
 
@@ -254,7 +261,6 @@ INSERT INTO `LabIncharge` VALUES('LI00001', 'P00006');
 -- Table structure for table `LabReport`
 --
 
-DROP TABLE IF EXISTS `LabReport`;
 CREATE TABLE `LabReport` (
   `ReportNo` char(25) NOT NULL,
   `TestId` char(5) DEFAULT NULL,
@@ -268,7 +274,9 @@ CREATE TABLE `LabReport` (
 -- Dumping data for table `LabReport`
 --
 
-INSERT INTO `LabReport` VALUES('Rep00003', '001', 'positive', 'not good', 'LI00001', 'PA00002');
+INSERT INTO `LabReport` (`ReportNo`, `TestId`, `Results`, `Remarks`, `LabInchargeId`, `PatientId`) VALUES
+('Rep00003', '001', 'positive', 'not good', 'LI00001', 'PA00002'),
+('Rep00004', '004', 'hypermetropia\r\nleft = 1.5\r\nright = 2', 'should eat more veggies', 'LI00001', 'PA00001');
 
 -- --------------------------------------------------------
 
@@ -276,9 +284,8 @@ INSERT INTO `LabReport` VALUES('Rep00003', '001', 'positive', 'not good', 'LI000
 -- Table structure for table `Medicine`
 --
 
-DROP TABLE IF EXISTS `Medicine`;
 CREATE TABLE `Medicine` (
-  `MedicineId` char(5) NOT NULL,
+  `MedicineId` char(25) NOT NULL,
   `MedicineName` char(25) DEFAULT NULL,
   `Quantity` int(11) DEFAULT NULL,
   `CompanyName` char(25) DEFAULT NULL,
@@ -287,13 +294,24 @@ CREATE TABLE `Medicine` (
   `DrugDescription` char(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Medicine`
+--
+
+INSERT INTO `Medicine` (`MedicineId`, `MedicineName`, `Quantity`, `CompanyName`, `Cost`, `MedicineType`, `DrugDescription`) VALUES
+('Med00001', 'Nimesulite', 110, 'Zydus', 5, 'Antibiotic', 'good medicine'),
+('Med00002', 'Metacine', 50, 'Cadilla', 10, 'Painkiller', 'generic drug'),
+('Med00003', 'Crocin', 40, 'Zydus', 15, 'Antibiotic', 'Cures fever'),
+('Med00004', 'Abacavir', 30, 'Cadilla', 10, 'Antibiotic', 'Cures cold'),
+('Med00005', 'Paracitamol', 100, 'V Care', 3, 'Painkiller', 'cures pain'),
+('Med00006', 'Alemtuzumab', 40, 'PMedicines', 20, 'Good Medicine', 'dont know');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Nurse`
 --
 
-DROP TABLE IF EXISTS `Nurse`;
 CREATE TABLE `Nurse` (
   `NurseId` char(25) NOT NULL,
   `PersonId` char(25) NOT NULL
@@ -303,7 +321,8 @@ CREATE TABLE `Nurse` (
 -- Dumping data for table `Nurse`
 --
 
-INSERT INTO `Nurse` VALUES('N00001', 'P00004');
+INSERT INTO `Nurse` (`NurseId`, `PersonId`) VALUES
+('N00001', 'P00004');
 
 -- --------------------------------------------------------
 
@@ -311,7 +330,6 @@ INSERT INTO `Nurse` VALUES('N00001', 'P00004');
 -- Table structure for table `Nurse_Helps_in_Surgery`
 --
 
-DROP TABLE IF EXISTS `Nurse_Helps_in_Surgery`;
 CREATE TABLE `Nurse_Helps_in_Surgery` (
   `NurseId` char(25) NOT NULL,
   `SurgeryNo` char(25) NOT NULL
@@ -323,7 +341,6 @@ CREATE TABLE `Nurse_Helps_in_Surgery` (
 -- Table structure for table `OPDAppointment`
 --
 
-DROP TABLE IF EXISTS `OPDAppointment`;
 CREATE TABLE `OPDAppointment` (
   `OPDAppointmentId` char(25) NOT NULL,
   `PatientId` char(25) NOT NULL,
@@ -334,8 +351,9 @@ CREATE TABLE `OPDAppointment` (
 -- Dumping data for table `OPDAppointment`
 --
 
-INSERT INTO `OPDAppointment` VALUES('OPD00001', 'PA00002', '2019-04-18');
-INSERT INTO `OPDAppointment` VALUES('OPD00002', 'PA00001', '2019-05-02');
+INSERT INTO `OPDAppointment` (`OPDAppointmentId`, `PatientId`, `Date`) VALUES
+('OPD00001', 'PA00002', '2019-04-18'),
+('OPD00002', 'PA00001', '2019-05-02');
 
 -- --------------------------------------------------------
 
@@ -343,7 +361,6 @@ INSERT INTO `OPDAppointment` VALUES('OPD00002', 'PA00001', '2019-05-02');
 -- Table structure for table `OPDBill`
 --
 
-DROP TABLE IF EXISTS `OPDBill`;
 CREATE TABLE `OPDBill` (
   `BillNo` char(25) NOT NULL,
   `DoctorId` char(25) NOT NULL,
@@ -354,8 +371,9 @@ CREATE TABLE `OPDBill` (
 -- Dumping data for table `OPDBill`
 --
 
-INSERT INTO `OPDBill` VALUES('B00001', 'D00002', 'R00001');
-INSERT INTO `OPDBill` VALUES('B00002', 'D00001', 'R00001');
+INSERT INTO `OPDBill` (`BillNo`, `DoctorId`, `ReceptionistId`) VALUES
+('B00001', 'D00002', 'R00001'),
+('B00002', 'D00001', 'R00001');
 
 -- --------------------------------------------------------
 
@@ -363,7 +381,6 @@ INSERT INTO `OPDBill` VALUES('B00002', 'D00001', 'R00001');
 -- Table structure for table `OperationTheatre`
 --
 
-DROP TABLE IF EXISTS `OperationTheatre`;
 CREATE TABLE `OperationTheatre` (
   `RoomNo` char(5) NOT NULL,
   `ICU` char(45) DEFAULT NULL
@@ -373,8 +390,9 @@ CREATE TABLE `OperationTheatre` (
 -- Dumping data for table `OperationTheatre`
 --
 
-INSERT INTO `OperationTheatre` VALUES('2', '1');
-INSERT INTO `OperationTheatre` VALUES('3', '0');
+INSERT INTO `OperationTheatre` (`RoomNo`, `ICU`) VALUES
+('2', '1'),
+('3', '0');
 
 -- --------------------------------------------------------
 
@@ -382,7 +400,6 @@ INSERT INTO `OperationTheatre` VALUES('3', '0');
 -- Table structure for table `Patient`
 --
 
-DROP TABLE IF EXISTS `Patient`;
 CREATE TABLE `Patient` (
   `PatientId` char(25) NOT NULL,
   `Height` char(5) NOT NULL,
@@ -395,8 +412,9 @@ CREATE TABLE `Patient` (
 -- Dumping data for table `Patient`
 --
 
-INSERT INTO `Patient` VALUES('PA00001', '155', '65', 'B+', 'P00008');
-INSERT INTO `Patient` VALUES('PA00002', '160', '70', 'A+', 'P00009');
+INSERT INTO `Patient` (`PatientId`, `Height`, `Weight`, `BloodGroup`, `PersonId`) VALUES
+('PA00001', '155', '65', 'B+', 'P00008'),
+('PA00002', '160', '70', 'A+', 'P00009');
 
 -- --------------------------------------------------------
 
@@ -404,7 +422,6 @@ INSERT INTO `Patient` VALUES('PA00002', '160', '70', 'A+', 'P00009');
 -- Table structure for table `Person`
 --
 
-DROP TABLE IF EXISTS `Person`;
 CREATE TABLE `Person` (
   `PersonId` char(25) NOT NULL,
   `FirstName` varchar(25) NOT NULL,
@@ -414,7 +431,7 @@ CREATE TABLE `Person` (
   `Address` varchar(105) DEFAULT NULL,
   `Gender` int(11) DEFAULT NULL,
   `Description` varchar(200) DEFAULT NULL,
-  `ContactNo` varchar(25) NOT NULL,
+  `ContactNo` char(12) NOT NULL,
   `Password` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -422,16 +439,17 @@ CREATE TABLE `Person` (
 -- Dumping data for table `Person`
 --
 
-INSERT INTO `Person` VALUES('P00001', 'Het', 'Jagani', 'H', '1998-10-14', 'Rajkot', 0, 'good man', '9879219608', '5f4dcc3b5aa765d61d8327deb882cf99');
-INSERT INTO `Person` VALUES('P00002', 'Nikhil', 'Bhadwani', 'N', '1998-02-10', 'Ahmedabad', 2, 'Bhadvo', '1234567890', '5f4dcc3b5aa765d61d8327deb882cf99');
-INSERT INTO `Person` VALUES('P00003', 'Parshwa', 'Shah', 'K', '1998-01-01', 'Ahmedabad', 0, 'desd', '9876543210', '5f4dcc3b5aa765d61d8327deb882cf99');
-INSERT INTO `Person` VALUES('P00004', 'Krupali', 'Mewada', 'H', '1997-05-30', 'ahmedabad', 1, 'dess', '7418529630', '1a1dc91c907325c69271ddf0c944bc72');
-INSERT INTO `Person` VALUES('P00005', 'Shruti', 'Hindocha', 'S', '1998-02-20', 'Ahm', 1, 'sh', '9638527410', '1a1dc91c907325c69271ddf0c944bc72');
-INSERT INTO `Person` VALUES('P00006', 'John', 'Appleseed', 'J', '1990-05-04', 'california', 0, 'heid', '854697123', '1a1dc91c907325c69271ddf0c944bc72');
-INSERT INTO `Person` VALUES('P00007', 'Jake', 'Sparrow', 'J', '1990-05-04', 'new jersey', 0, 'dfdsf', '854697123', '1a1dc91c907325c69271ddf0c944bc72');
-INSERT INTO `Person` VALUES('P00008', 'Kate', 'Smith', 'J', '1990-05-04', 'california', 1, 'heid', '854697123', '1a1dc91c907325c69271ddf0c944bc72');
-INSERT INTO `Person` VALUES('P00009', 'Sachin', 'Tendulkar', 'L ', '1992-06-11', 'Mumbai, Cricket Ground', 0, 'batsman', '9516374285', NULL);
-INSERT INTO `Person` VALUES('P00010', 'Biraj', 'Dhaduk', 'P', '1998-09-05', 'Rajkot ', 0, 'none', '7567593939', 'password');
+INSERT INTO `Person` (`PersonId`, `FirstName`, `LastName`, `MiddleName`, `DateOfBirth`, `Address`, `Gender`, `Description`, `ContactNo`, `Password`) VALUES
+('P00001', 'Het', 'Jagani', 'H', '1998-10-14', 'Rajkot', 0, 'good man', '9879219608', '5f4dcc3b5aa765d61d8327deb882cf99'),
+('P00002', 'Nikhil', 'Balwani', 'N', '1998-02-10', 'Ahmedabad', 0, 'desc', '1234567890', '5f4dcc3b5aa765d61d8327deb882cf99'),
+('P00003', 'Parshwa', 'Shah', 'K', '1998-01-01', 'Ahmedabad', 0, 'desd', '9876543210', '5f4dcc3b5aa765d61d8327deb882cf99'),
+('P00004', 'Krupali', 'Mewada', 'H', '1997-05-30', 'ahmedabad', 1, 'dess', '7418529630', '1a1dc91c907325c69271ddf0c944bc72'),
+('P00005', 'Shruti', 'Hindocha', 'S', '1998-02-20', 'Ahm', 1, 'sh', '9638527410', '1a1dc91c907325c69271ddf0c944bc72'),
+('P00006', 'John', 'Appleseed', 'J', '1990-05-04', 'california', 0, 'heid', '854697123', '1a1dc91c907325c69271ddf0c944bc72'),
+('P00007', 'Jake', 'Sparrow', 'J', '1990-05-04', 'new jersey', 0, 'dfdsf', '854697123', '1a1dc91c907325c69271ddf0c944bc72'),
+('P00008', 'Kate', 'Smith', 'J', '1990-05-04', 'california', 1, 'heid', '854697123', '1a1dc91c907325c69271ddf0c944bc72'),
+('P00009', 'Sachin', 'Tendulkar', 'L ', '1992-06-11', 'Mumbai, Cricket Ground', 0, 'batsman', '9516374285', NULL),
+('P00010', 'Biraj', 'Dhaduk', 'P', '1998-09-05', 'Rajkot ', 0, 'none', '7567593939', '5f4dcc3b5aa765d61d8327deb882cf99');
 
 -- --------------------------------------------------------
 
@@ -439,7 +457,6 @@ INSERT INTO `Person` VALUES('P00010', 'Biraj', 'Dhaduk', 'P', '1998-09-05', 'Raj
 -- Table structure for table `Pharmacist`
 --
 
-DROP TABLE IF EXISTS `Pharmacist`;
 CREATE TABLE `Pharmacist` (
   `PharmacistId` char(25) NOT NULL,
   `PersonId` char(25) NOT NULL
@@ -449,7 +466,8 @@ CREATE TABLE `Pharmacist` (
 -- Dumping data for table `Pharmacist`
 --
 
-INSERT INTO `Pharmacist` VALUES('PH00001', 'P00007');
+INSERT INTO `Pharmacist` (`PharmacistId`, `PersonId`) VALUES
+('PH00001', 'P00007');
 
 -- --------------------------------------------------------
 
@@ -457,11 +475,17 @@ INSERT INTO `Pharmacist` VALUES('PH00001', 'P00007');
 -- Table structure for table `PharmacyBill`
 --
 
-DROP TABLE IF EXISTS `PharmacyBill`;
 CREATE TABLE `PharmacyBill` (
   `BillNo` char(25) NOT NULL,
   `PharmacistId` char(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `PharmacyBill`
+--
+
+INSERT INTO `PharmacyBill` (`BillNo`, `PharmacistId`) VALUES
+('B00004', 'PH00001');
 
 -- --------------------------------------------------------
 
@@ -469,12 +493,20 @@ CREATE TABLE `PharmacyBill` (
 -- Table structure for table `PharmacyBill_has_Medicine`
 --
 
-DROP TABLE IF EXISTS `PharmacyBill_has_Medicine`;
 CREATE TABLE `PharmacyBill_has_Medicine` (
   `BillNo` char(25) NOT NULL,
-  `MedicineId` char(5) NOT NULL,
+  `MedicineId` char(25) NOT NULL,
   `Quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `PharmacyBill_has_Medicine`
+--
+
+INSERT INTO `PharmacyBill_has_Medicine` (`BillNo`, `MedicineId`, `Quantity`) VALUES
+('B00004', 'Med00001', 5),
+('B00004', 'Med00003', 15),
+('B00004', 'Med00004', 10);
 
 -- --------------------------------------------------------
 
@@ -482,7 +514,6 @@ CREATE TABLE `PharmacyBill_has_Medicine` (
 -- Table structure for table `Prescription`
 --
 
-DROP TABLE IF EXISTS `Prescription`;
 CREATE TABLE `Prescription` (
   `ReportNo` char(25) NOT NULL,
   `Details` char(200) DEFAULT NULL,
@@ -494,8 +525,11 @@ CREATE TABLE `Prescription` (
 -- Dumping data for table `Prescription`
 --
 
-INSERT INTO `Prescription` VALUES('Rep00001', 'He has fever.\r\nMetacine 1-1-1\r\nWet cloth treatment', 'OPD00001', 'D00003');
-INSERT INTO `Prescription` VALUES('Rep00002', 'good condition\r\nreduce dosage to 50 mg', 'OPD00002', 'D00001');
+INSERT INTO `Prescription` (`ReportNo`, `Details`, `OPDAppointmentId`, `DoctorId`) VALUES
+('Rep00001', 'He has fever.\r\nMetacine 1-1-1\r\nWet cloth treatment', 'OPD00001', 'D00003'),
+('Rep00002', 'good condition\r\nreduce dosage to 50 mg', 'OPD00002', 'D00001'),
+('Rep00005', 'he has a severe fever. Paracitamol 1-1-1 50mg', 'OPD00001', 'D00001'),
+('Rep00006', 'high blood pressure. insulin 5mg 1-2-1', 'OPD00001', 'D00001');
 
 -- --------------------------------------------------------
 
@@ -503,7 +537,6 @@ INSERT INTO `Prescription` VALUES('Rep00002', 'good condition\r\nreduce dosage t
 -- Table structure for table `Receptionist`
 --
 
-DROP TABLE IF EXISTS `Receptionist`;
 CREATE TABLE `Receptionist` (
   `ReceptionistId` char(25) NOT NULL,
   `PersonId` char(25) NOT NULL
@@ -513,7 +546,8 @@ CREATE TABLE `Receptionist` (
 -- Dumping data for table `Receptionist`
 --
 
-INSERT INTO `Receptionist` VALUES('R00001', 'P00005');
+INSERT INTO `Receptionist` (`ReceptionistId`, `PersonId`) VALUES
+('R00001', 'P00005');
 
 -- --------------------------------------------------------
 
@@ -521,7 +555,6 @@ INSERT INTO `Receptionist` VALUES('R00001', 'P00005');
 -- Table structure for table `Report`
 --
 
-DROP TABLE IF EXISTS `Report`;
 CREATE TABLE `Report` (
   `ReportNo` char(25) NOT NULL,
   `DATE` date DEFAULT NULL
@@ -531,9 +564,13 @@ CREATE TABLE `Report` (
 -- Dumping data for table `Report`
 --
 
-INSERT INTO `Report` VALUES('Rep00001', '2019-05-03');
-INSERT INTO `Report` VALUES('Rep00002', '2019-05-03');
-INSERT INTO `Report` VALUES('Rep00003', '2019-05-01');
+INSERT INTO `Report` (`ReportNo`, `DATE`) VALUES
+('Rep00001', '2019-05-03'),
+('Rep00002', '2019-05-03'),
+('Rep00003', '2019-05-01'),
+('Rep00004', '2019-05-10'),
+('Rep00005', '2019-05-01'),
+('Rep00006', '2019-05-01');
 
 -- --------------------------------------------------------
 
@@ -541,7 +578,6 @@ INSERT INTO `Report` VALUES('Rep00003', '2019-05-01');
 -- Table structure for table `Room`
 --
 
-DROP TABLE IF EXISTS `Room`;
 CREATE TABLE `Room` (
   `RoomNo` char(5) NOT NULL,
   `AirConditioned` tinyint(1) DEFAULT NULL
@@ -551,11 +587,12 @@ CREATE TABLE `Room` (
 -- Dumping data for table `Room`
 --
 
-INSERT INTO `Room` VALUES('1', 0);
-INSERT INTO `Room` VALUES('2', 1);
-INSERT INTO `Room` VALUES('3', 1);
-INSERT INTO `Room` VALUES('4', 1);
-INSERT INTO `Room` VALUES('5', 0);
+INSERT INTO `Room` (`RoomNo`, `AirConditioned`) VALUES
+('1', 0),
+('2', 1),
+('3', 1),
+('4', 1),
+('5', 0);
 
 -- --------------------------------------------------------
 
@@ -563,7 +600,6 @@ INSERT INTO `Room` VALUES('5', 0);
 -- Table structure for table `Serve`
 --
 
-DROP TABLE IF EXISTS `Serve`;
 CREATE TABLE `Serve` (
   `Date` date NOT NULL,
   `BedNo` char(5) NOT NULL,
@@ -576,9 +612,10 @@ CREATE TABLE `Serve` (
 -- Dumping data for table `Serve`
 --
 
-INSERT INTO `Serve` VALUES('2019-05-06', '3', 'IPD00001', 'N00001', '1');
-INSERT INTO `Serve` VALUES('2019-05-04', '5', 'IPD00001', 'N00001', '2');
-INSERT INTO `Serve` VALUES('2019-05-04', '6', 'IPD00002', 'N00001', '2');
+INSERT INTO `Serve` (`Date`, `BedNo`, `IPDAppointmentId`, `NurseId`, `RoomNo`) VALUES
+('2019-05-06', '3', 'IPD00001', 'N00001', '1'),
+('2019-05-04', '5', 'IPD00001', 'N00001', '2'),
+('2019-05-04', '6', 'IPD00002', 'N00001', '2');
 
 -- --------------------------------------------------------
 
@@ -586,7 +623,6 @@ INSERT INTO `Serve` VALUES('2019-05-04', '6', 'IPD00002', 'N00001', '2');
 -- Table structure for table `Surgery`
 --
 
-DROP TABLE IF EXISTS `Surgery`;
 CREATE TABLE `Surgery` (
   `SurgeryNo` char(25) NOT NULL,
   `DoctorId` char(25) NOT NULL,
@@ -599,7 +635,10 @@ CREATE TABLE `Surgery` (
 -- Dumping data for table `Surgery`
 --
 
-INSERT INTO `Surgery` VALUES('Sur00001', 'D00002', '2', 'IPD00001', '2019-04-22');
+INSERT INTO `Surgery` (`SurgeryNo`, `DoctorId`, `RoomNo`, `IPDAppointmentID`, `DateOfAdmission`) VALUES
+('Sur00001', 'D00002', '2', 'IPD00001', '2019-04-22'),
+('Sur00002', 'D00001', '2', 'IPD00002', '2019-05-04'),
+('Sur00003', 'D00001', '2', 'IPD00002', '2019-05-04');
 
 --
 -- Indexes for dumped tables
@@ -678,7 +717,8 @@ ALTER TABLE `IPDBill`
 ALTER TABLE `LabBill`
   ADD PRIMARY KEY (`BillNo`),
   ADD KEY `fk_LabBill_LabReport1_idx` (`ReportNo`),
-  ADD KEY `fk_LabBill_LabIncharge1_idx` (`LabInchargeId`);
+  ADD KEY `fk_LabBill_LabIncharge1_idx` (`LabInchargeId`),
+  ADD KEY `BillNo` (`BillNo`);
 
 --
 -- Indexes for table `LabIncharge`
@@ -882,9 +922,9 @@ ALTER TABLE `IPDBill`
 -- Constraints for table `LabBill`
 --
 ALTER TABLE `LabBill`
+  ADD CONSTRAINT `LabBill_ibfk_1` FOREIGN KEY (`ReportNo`) REFERENCES `LabReport` (`ReportNo`),
   ADD CONSTRAINT `fk_LabBill_Bill1` FOREIGN KEY (`BillNo`) REFERENCES `Bill` (`BillNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_LabBill_LabIncharge1` FOREIGN KEY (`LabInchargeId`) REFERENCES `LabIncharge` (`LabInchargeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_LabBill_LabReport1` FOREIGN KEY (`ReportNo`) REFERENCES `LabReport` (`ReportNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_LabBill_LabIncharge1` FOREIGN KEY (`LabInchargeId`) REFERENCES `LabIncharge` (`LabInchargeId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `LabIncharge`
@@ -956,7 +996,7 @@ ALTER TABLE `PharmacyBill`
 -- Constraints for table `PharmacyBill_has_Medicine`
 --
 ALTER TABLE `PharmacyBill_has_Medicine`
-  ADD CONSTRAINT `fk_PharmacyBill_has_Medicine_Medicine1` FOREIGN KEY (`MedicineId`) REFERENCES `Medicine` (`MedicineId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PharmacyBill_has_Medicine_ibfk_1` FOREIGN KEY (`MedicineId`) REFERENCES `Medicine` (`MedicineId`),
   ADD CONSTRAINT `fk_PharmacyBill_has_Medicine_PharmacyBill1` FOREIGN KEY (`BillNo`) REFERENCES `PharmacyBill` (`BillNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
