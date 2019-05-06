@@ -104,6 +104,8 @@
     ?>
 
   </table>
+  <hr>
+  <a href="pharmacist_menu.php">Return to main menu</a>
   </center>
 </body>
 </html>
