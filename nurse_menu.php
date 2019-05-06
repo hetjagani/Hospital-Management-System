@@ -13,12 +13,16 @@
 <html>
 <head>
   <meta charset="utf-8">
+      <link rel="stylesheet" href="project.css">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Nurse Menu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <center>
+    <p>  Hospital Management System  </p>
+
   <h2> Nurse <?php echo '['.$nurse_data['FirstName'].' '.$nurse_data['LastName'].']'; ?></h2>
   <hr>
   <form action="" method="POST">
@@ -69,11 +73,12 @@
       echo '<h3>No Patient Assigned...</h3>';
     }
   ?>
-
+<br>
     </table>
     <hr>
     <a href="index.php"> LOGOUT </a> <br>
     <hr>
+    
 </center>
 </body>
 </html>
