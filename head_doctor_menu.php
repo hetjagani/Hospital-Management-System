@@ -17,7 +17,7 @@
 </center>
 
   <center>
-	<div class="vertical-menu">
+
     <h2> Head Doctor </h2>
     
 
@@ -33,7 +33,7 @@
     <a href="view_surgery.php"> View Surgery Details </a> <br>
    
     <a href="index.php"> Logout </a> <br>
-   </div>
+
   </center>
 </body>
 </html>
