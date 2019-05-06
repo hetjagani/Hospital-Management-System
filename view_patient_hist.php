@@ -6,11 +6,14 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="project.css">  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Patient's History</title>
 </head>
 <body>
 <center>
+  <p>  Hospital Management System  </p>
+
   <h2>Patient History</h2>
   <hr>
   <table>
