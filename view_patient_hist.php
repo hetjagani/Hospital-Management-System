@@ -98,17 +98,16 @@
 
   <?php
     while ($appoi_ids = mysqli_fetch_assoc($run_id_query)) {
-      $report_query = 'SELECT * FROM Prescription JOIN Report USING(ReportNo) WHERE OPDAppointmentId = "'.$appoi_ids['OPDAppointmentId'].'";';
+      $report_query = 'SELECT * FROM Prescription JOIN Report USING(ReportNo) WHERE OPDAppointmentId = "'.$appoi_ids['OPDAppointmentId'].'" ORDER BY Date DESC;';
       $report_run = mysqli_query($conn, $report_query) or die(mysqli_error($conn));
 
-      $report_data = mysqli_fetch_assoc($report_run);
+      while($report_data = mysqli_fetch_assoc($report_run)){
 
       //get doctor name
       $doc_name_query = 'SELECT FirstName, LastName, DoctorId FROM Person JOIN Doctor USING(PersonId) WHERE DoctorId = "'.$report_data['DoctorId'].'";';
       $run = mysqli_query($conn, $doc_name_query) or die(mysqli_error($conn));
       $name = mysqli_fetch_assoc($run);
       $doc_name = $name['FirstName'].' '.$name['LastName']; 
-    }
 
     echo '<hr>
   <table>
@@ -129,7 +128,8 @@
       <td>'.$report_data['Details'].'</td>
     </tr>
   </table>';
-
+  }
+}
   ?>
   
 
