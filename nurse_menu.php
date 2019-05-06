@@ -22,7 +22,6 @@
 <body>
 <center>
     <p>  Hospital Management System  </p>
-<div class="vertical-menu">
 
   <h2> Nurse <?php echo '['.$nurse_data['FirstName'].' '.$nurse_data['LastName'].']'; ?></h2>
   <hr>
@@ -74,12 +73,12 @@
       echo '<h3>No Patient Assigned...</h3>';
     }
   ?>
-
+<br>
     </table>
     <hr>
     <a href="index.php"> LOGOUT </a> <br>
     <hr>
-    </div>
+    
 </center>
 </body>
 </html>

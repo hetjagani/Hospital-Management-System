@@ -7,13 +7,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="project.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pharmacy Bill</title>
 </head>
 <body>
   <center>
-  
+      <p>  Hospital Management System  </p>
+
+
   <h2>Pharmacy Bill</h2>
   <hr>
   <table>
