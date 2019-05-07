@@ -1,16 +1,17 @@
-<?php 
-	require 'connect.php';
+<?php
 
-	$query = 'SELECT * FROM user_info;';
+require 'connect.php';
 
-	if($query_run = mysqli_query($conn,$query)){	//executed the query...
-		echo 'query executed... <br>';
+$query = 'SELECT * FROM user_info;';
 
-		//$query_data = mysqli_fetch_assoc($query_run); 	
-		// fetched the data from query...
-		while ($query_data = mysqli_fetch_assoc($query_run)) {
-			print_r($query_data);
-			echo "<br>";
-		}
-	}
+if ($query_run = mysqli_query($conn, $query)) { //executed the query...
+    echo 'query executed... <br>';
+
+    //$query_data = mysqli_fetch_assoc($query_run); 	
+    // fetched the data from query...
+    while ($query_data = mysqli_fetch_assoc($query_run)) {
+        print_r($query_data);
+        echo "<br>";
+    }
+}
 ?>

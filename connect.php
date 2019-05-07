@@ -1,16 +1,16 @@
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "devyask47";
 
-	// Create connection
-	$conn = mysqli_connect($servername, $username, $password);
+$servername = "localhost";
+$username = "root";
+$password = "devyask47";
 
-	// Check connection
-	if (!$conn) {
-	    die("Connection failed: " . mysqli_connect_error());
-	}
+// Create connection
+$conn = mysqli_connect($servername, $username, $password);
 
-	mysqli_select_db($conn,'hospital_mngt');
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
+mysqli_select_db($conn, 'hospital_mngt');
 ?>
