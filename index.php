@@ -1,3 +1,9 @@
+/*
+*   @author Jagani
+*   @version 0.1.0
+*/
+
+
 <?php
 session_start();
 $_SESSION = array();

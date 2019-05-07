@@ -23,7 +23,7 @@ $nurse_data = mysqli_fetch_assoc($nurse_name_run);
     <center>
         <p>  Hospital Management System  </p>
 
-        <h2> Nurse <?php echo '[' . $nurse_data['FirstName'] . ' ' . $nurse_data['LastName'] . ']'; ?></h2>
+        <h2> Nurse /<?php echo '[' . $nurse_data['FirstName'] . ' ' . $nurse_data['LastName'] . ']'; ?></h2>
         <hr>
         <form action="" method="POST">
             Enter Date : <input type="Date" name="n_date"> 
