@@ -1,6 +1,11 @@
+/**
+* @author Parshwa
+* Description:- CSS File to Enhance the Views
+*/
+
+
 body {
     font-family: sans-serif;
-    /*background-image: url(hospital-management-system-background-9.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background: #DFE3ee;
@@ -8,13 +13,11 @@ body {
 
 p   {
     font-family: sans-serif;
-    /*background-image: url(hospital-management-system-background-9.jpg);
-   background: linear-gradient(to right, #bdc447, #1c3e50); */
     background-repeat: no-repeat;
     background-size: cover;
     background: #3b5999;
     border-top-width: 5px;
-    border-left-width: 5px;      
+    border-left-width: 5px;
     font-size: 45px;
     color: white;
     padding: 20px;
@@ -48,6 +51,7 @@ a {
     display: block; /* Make the links appear below each other */
     padding: 12px; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
+    appearance: desktop;
 }
 
 .vertical-menu a:hover {
@@ -111,12 +115,14 @@ a {
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-} 
+}
 
 
 
-/*
-LOGIN
+/**
+* @author:- Parshwa
+* @version 1
+* Login Page
 */
 .login {
     background: #eceeee;
